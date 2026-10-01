@@ -133,6 +133,22 @@ If `jupyter: command not found` appears, run `source .venv/bin/activate` or call
 Recommended environment: Python 3.10+, PyTorch 2.0+, NumPy, Matplotlib, Jupyter, 16GB RAM. Most
 notebooks run on CPU.
 
+### Online reader (web)
+
+The React/Vite reader in [`web/`](web/) is what gets published to GitHub Pages. Requires Node.js 20+.
+
+```bash
+./scripts/serve_web.sh              # dev server with hot reload on http://127.0.0.1:5273
+./scripts/serve_web.sh --preview    # production build, served locally
+```
+
+The dev server watches `notebooks/` and `notebooks-en/`, so added, renamed or removed `.ipynb` files
+show up on refresh without a restart. `--preview` builds into `web/dist/` (gitignored), leaving the
+committed `docs/` output untouched. Both forms read the port from `PORT`.
+
+To browse and run the notebooks themselves, `./scripts/run_notebooks.sh` starts JupyterLab at the
+repository root so `notebooks/` and `notebooks-en/` are both reachable from one server.
+
 ### Real LLM
 
 Point the client at any OpenAI-compatible endpoint to see real model behavior:

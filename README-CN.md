@@ -101,6 +101,22 @@ jupyter notebook notebooks/part1-foundation/01-course-overview.ipynb
 推荐环境：Python 3.10+、PyTorch 2.0+、NumPy、Matplotlib、Jupyter、16GB 内存。
 大多数 notebook 在 CPU 上即可运行。
 
+### 在线阅读器（web）
+
+[`web/`](web/) 里的 React/Vite 阅读器就是发布到 GitHub Pages 的站点，需要 Node.js 20+。
+
+```bash
+./scripts/serve_web.sh              # 开发服务器，带热更新，http://127.0.0.1:5273
+./scripts/serve_web.sh --preview    # 本地运行生产构建
+```
+
+开发服务器会监听 `notebooks/` 与 `notebooks-en/`，新增、改名或删除 `.ipynb` 后刷新页面即可生效，
+无需重启。`--preview` 构建到 `web/dist/`（已被 gitignore），不会覆盖仓库里已提交的 `docs/` 产物。
+两种模式都用环境变量 `PORT` 指定端口。
+
+想在浏览器里直接运行 notebook 本身，用 `./scripts/run_notebooks.sh`：它在仓库根目录启动
+JupyterLab，`notebooks/` 与 `notebooks-en/` 共用一个服务。
+
 ### 配置真实 LLM
 
 想看真实模型行为，把客户端指向任意 OpenAI 兼容端点：
